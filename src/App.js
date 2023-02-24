@@ -35,7 +35,7 @@ export default function App() {
   })
 
   return (
-    <div className='relative font-[Outfit] text-white w-full h-screen'>
+    <div className='relative font-[Outfit] text-white w-full'>
       <h1 className='text-white font-bold text-3xl tracking-wider mt-[50px] ml-[30px]'>TechBinge</h1>
       <h1 className='text-white font-bold text-2xl tracking-wider mt-[40px] ml-[30px] text-center underline underline-offset-8'>Products</h1>
       <div className='text-white flex items-center mt-[30px] px-[30px] space-x-4 py-2 overflow-auto scrollbar-hide scroll-smooth scroll-pl-[30px] snap-x'>
