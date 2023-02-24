@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState,useEffect} from 'react'
+import axios from 'axios'
+import ProductCard from './components/ProductCard'
 
-function App() {
+export default function App() {
+
+  const [product, setProduct] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    getProducts();
+  },[]);
+
+  async function getProducts(){
+    try {
+      const request = await axios.get("https://dummyjson.com/products?skip=0&limit=0");
+      setProduct(request.data.products);
+      
+    } catch (error) {
+      setError(error.message);
+    }
+  }
+
+  const items = product.map((item) => {
+    return <ProductCard 
+              id={item.id}
+              title={item.title}
+              price={item.price}
+          />
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {error!=="" && error}
+      {items}
     </div>
   );
 }
-
-export default App;
